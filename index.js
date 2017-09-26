@@ -5,6 +5,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const shoeRoutes = require('./shoes_api');
 const Models = require('./models');
+const ObjectId =  require("mongodb").ObjectId;
 const models = Models(process.env.MONGO_DB_URL || 'mongodb://localhost/shoesApi');
 const ShoeRoutes = shoeRoutes(models);
 const app = express();
@@ -29,7 +30,7 @@ app.get('/api/shoes/brand/:brandname', ShoeRoutes.showBrands);
 app.get('/api/shoes/size/:size', ShoeRoutes.showSizes);
 app.get('/api/shoes/color/:color', ShoeRoutes.showColors);
 app.get('/api/shoes/brand/:brandname/size/:size/color/:color', ShoeRoutes.showBrandSizeAndColor);
-app.post('/api/shoes/sold/:name', ShoeRoutes.updatingStock);
+app.post('/api/shoes/sold/:id', ShoeRoutes.updatingStock);
 app.post('/api/shoes', ShoeRoutes.addNewShoes);
 
 

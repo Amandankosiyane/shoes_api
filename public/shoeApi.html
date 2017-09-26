@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="utf-8">
+        <script src="handlebars-v4.0.5.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+        <!-- <script src="/jquery/jquery.min.js" charset="utf-8"></script> -->
+        <script src="handlebars-v4.0.5.js"></script>
+        <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+        <!-- <link rel="stylesheet" href="/css/master.css"> -->
+        <title>Shoe Api</title>
+</head>
+
+<body>
+        <form class="" action="shoeApi.html" method="post">
+
+
+        <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                        <div class="navbar-header">
+                                <a class="navbar-brand" href="#">Home</a>
+                                <a class="navbar-brand" href="#">Add stock</a>
+                        </div>
+                </div>
+        </nav>
+
+
+        <div class="container">
+                <h1>SHOE API</h1>
+                <div id="myStock" align="center">
+
+                        <script id="myTemplate" type="text/x-handlebars-template">
+                                <div class="btn-group">
+                                        <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
+                                                            <option value="" disabled selected>Please select option</option>
+                                                            <span class="caret"></span></button>
+                                        <div class="dropdown-menu">
+                                                <div class="col col-lg-2">
+                                                        <select>
+                         {{#each brand}}
+                    <option>{{this}}</option>
+                    {{/each}}
+                         </select>
+                                                </div>
+
+                                                <div class="col col-lg-2">
+                                                        <select>
+{{#each color}}
+<option>{{this}}</option>
+{{/each}}
+</select>
+                                                </div>
+
+                                                <div class="col col-lg-2">
+                                                        <select>
+{{#each size}}
+<option>{{this}}</option>
+{{/each}}
+</select>
+                                                </div>
+
+                                        </div>
+                        </script>
+
+                        <div class="col col-lg-2">
+                                <div class="searlist">
+                                        <label for="searchBrand">Brand:</label>
+                                        <select class="searchBrand"></select>
+                                </div>
+                        </div>
+
+                        <div class="col col-lg-2">
+                                <label for="searcholor">Color:</label>
+                                <select class="searchColor"></select>
+                        </div>
+
+                        <div class="col col-lg-2">
+                                <label for="searchSize">Size:</label>
+                                <select class="searchSize"></select>
+                        </div>
+                        </div>
+
+                        <div class="col col-lg-2">
+                                <button onclick="myFunction();" type="button" class="btn btn-primary" id="searchStock">Search</button>
+                        </div>
+                </div>
+                <div class="col col-lg-4">
+                        <p id="userDisplay"></p>
+                </div>
+        </div>
+        <br><br><br>
+        <div class="container">
+                <script id="template" type="text/x-handlebars-template">
+                        <div class="table-responsive">
+                                <table class="table table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>BRAND</th>
+                                                        <th>COLOR</th>
+                                                        <th>SIZE</th>
+                                                        <th>STOCK</th>
+                                                        <th>PRICE</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                                {{#each stock}}
+                                                <tr>
+                                                        <td class="active">{{brand}}</td>
+                                                        <td class="danger">{{color}}</td>
+                                                        <td class="info">{{size}}</td>
+                                                        <td class="warning">{{in_stock}}</td>
+                                                        <td class="info"> R {{price}} <br><div class="col-1">
+                                                                <button onclick="buyShoe();" type="button" class="btn btn-primary" id="addBtn">Buy</button>
+                                                        </div></td>
+                                                </tr>
+                                                {{/each}}
+                                        </tbody>
+                                </table>
+                        </div>
+                </script>
+        </div>
+</form>
+
+        <form class="" action="shoeApi.html" method="post">
+                <div id="addingMyStock" align="center">
+
+                        <h2><b>Adding Stock</b></h2>
+                        <div class="form-group">
+                                <div class="col col-lg-2">
+                                        <label for="addingBrand">Add Brand:</label>
+                                        <input type="text" class="form-control" id="addingBrand" aria-describedby="text" placeholder="Enter Brand name">
+                                </div>
+                                <div class="col col-lg-2">
+                                        <label for="addingColor">Add Color:</label>
+                                        <input type="text" class="form-control" id="addingColor" aria-describedby="text" placeholder="Enter Color name">
+                                </div>
+                                <div class="col col-lg-2">
+                                        <label for="addingSize">Add Size:</label>
+                                        <input type="text" class="form-control" id="addingSize" aria-describedby="text" placeholder="Enter a Size">
+                                </div>
+                                <div class="col col-lg-2">
+                                        <label for="addingBrand">Add Stock:</label>
+                                        <input type="text" class="form-control" id="addingStock" aria-describedby="text" placeholder="Enter Stock Number">
+                                </div>
+                                <div class="col col-lg-2">
+                                        <label for="addingBrand">Add Price:</label>
+                                        <input type="text" class="form-control" id="addingPrice" aria-describedby="text" placeholder="Enter the price ">
+                                </div>
+                        </div>
+
+                </div>
+                <br/><br>
+
+                <div id="addStockFirst"></div>
+
+                <div class="col col-lg-2">
+                        <button onclick="myAddStock();" type="button" class="btn btn-primary" id="addBtn">Add Stock</button>
+                </div>
+
+                <br><br>
+        </form>
+
+        <script src="shoeApi.js" charset="utf-8"></script>
+        </div>
+</body>
+
+</html>

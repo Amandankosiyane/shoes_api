@@ -1,3 +1,4 @@
+const ObjectId =  require("mongodb").ObjectId;
 module.exports = function(models) {
 
         const AllShoes = function(req, res, next) {
@@ -76,15 +77,47 @@ const showColors = function(req,res,next){
         }
 
 const updatingStock = function(req,res,next){
-// var name = req.params
-//         models.storeShoes.findOneAndUpdate({
-//                 _id: name
-//         }, function(err, updatedStock){
+        var shoeId = req.params.id;
+        models.storeShoes.findOneAndUpdate({
+                _id: ObjectId(shoeId)
+        },
+        {
+                $inc:{
+                        "InStock": -1
+                },
+        },
+        {
+                        upsert: false
+                }, function(err, soldShoes){
+                        if (err) {
+                                return res.json({
+                                        status: "error",
+                                        error: err,
+                                        newShoes: []
+                                });
+                                }
+                                else{
+                                        res.json({
+                                                status: "success",
+                                                newShoes: soldShoes
+                                        })
+                        }
+                })
+// var shoeId = req.params.id;
+// models.storeShoes.findOneAndUpdate({
+//         _id: ObjectId(shoeId)
+// }, function(err,soldShoe) {
+//         if (err) {
+//                 return next(err)
+//         }
+//         soldShoe.InStock = soldShoe.InStock - 1;
+//         soldShoe.save(function(err, updatedShoes){
 //                 if (err) {
 //                         return next(err)
 //                 }
-//                 res.send(updatedStock)
+//                 req.flash('error', 'We have ' + soldShoe.InStock + ' available')
 //         })
+// })
 }
 
         const addNewShoes = function(req, res, next) {

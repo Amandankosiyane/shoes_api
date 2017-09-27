@@ -103,21 +103,6 @@ const updatingStock = function(req,res,next){
                                         })
                         }
                 })
-// var shoeId = req.params.id;
-// models.storeShoes.findOneAndUpdate({
-//         _id: ObjectId(shoeId)
-// }, function(err,soldShoe) {
-//         if (err) {
-//                 return next(err)
-//         }
-//         soldShoe.InStock = soldShoe.InStock - 1;
-//         soldShoe.save(function(err, updatedShoes){
-//                 if (err) {
-//                         return next(err)
-//                 }
-//                 req.flash('error', 'We have ' + soldShoe.InStock + ' available')
-//         })
-// })
 }
 
         const addNewShoes = function(req, res, next) {

@@ -1,6 +1,10 @@
 const ObjectId =  require("mongodb").ObjectId;
 module.exports = function(models) {
 
+        // const shoes = function(req, res, next) {
+        //         res.send({shoes})
+        // }
+
         const AllShoes = function(req, res, next) {
                 models.storeShoes.find({}, function(err, foundShoes) {
                         if (err) {
@@ -122,6 +126,7 @@ const updatingStock = function(req,res,next){
         }
 
         return {
+                // shoes,
                 AllShoes,
                 showBrands,
                 showSizes,

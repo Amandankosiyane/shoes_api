@@ -21,10 +21,11 @@ app.use(express.static('public'));
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 * 30 }}));
 app.use(flash());
 
-// app.get('/', function(req,res){
-//         res.redirect('/shoes');
-// })
+app.get('/', function(req,res){
+        res.redirect('/api/shoes');
+})
 
+// app.get('/api/shoes', ShoeRoutes.shoes);
 app.get('/api/shoes', ShoeRoutes.AllShoes);
 app.get('/api/shoes/brand/:brandname', ShoeRoutes.showBrands);
 app.get('/api/shoes/size/:size', ShoeRoutes.showSizes);

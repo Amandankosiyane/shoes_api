@@ -10,9 +10,8 @@ module.exports = function(models) {
                         if (err) {
                                 return next(err)
                         }
-                        res.json({
-                                foundShoes
-                        })
+                        res.json(
+                                foundShoes)
                 })
         }
 
@@ -60,16 +59,13 @@ const showColors = function(req,res,next){
 }
 
 
-        const showBrandSizeAndColor = function(req,res,next){
+        const showBrandSize = function(req,res,next){
                 var brandname = req.params.brandname;
                 var size = req.params.size;
-                var color = req.params.color;
 
-
-                models.storeShoes.find({
+        models.storeShoes.find({
                         Brand: brandname,
                         Size: size,
-                        Color: color
                 }, function(err, foundShoesAndSize){
                         if (err) {
                                 return next(err)
@@ -131,7 +127,7 @@ const updatingStock = function(req,res,next){
                 showBrands,
                 showSizes,
                 showColors,
-                showBrandSizeAndColor,
+                showBrandSize,
                 updatingStock,
                 addNewShoes
         }

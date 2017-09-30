@@ -4,6 +4,11 @@ $(function() {
         var table = document.getElementById("template").innerHTML;
         var theTemplate = Handlebars.compile(table);
 
+        var dropDownDisplay = document.querySelector(".drops");
+
+        var uniqueDropdowns = document.getElementById("dropDowns").innerHTML;
+        var dropdowns = Handlebars.compile(uniqueDropdowns);
+
         // $("#searchStock").on("click", function(){
         // document.getElementById("searchStock").addEventListener("onclick", showAll)
         // function showAll(){
@@ -14,13 +19,16 @@ $(function() {
                         addDisplay.innerHTML = theTemplate({
                                 stock: data
                         })
+                        dropDownDisplay.innerHTML = dropdowns({
+                                stock: data
+                        })
                 },
                 error: function(error) {
                         // addDisplay.innerHTML = error
                         alert('Stock loading error');
                 }
         });
-// });
+        // });
         //ajax add a shoe to the database
         $('#addBtn').on('click', function() {
                 var brand = document.getElementById('addingBrand').value;
@@ -59,48 +67,87 @@ $(function() {
                 })
         })
 
-        $('#showInfo').on('click', function(e){
-                        // alert('welcome');
+        $('#showInfo').on('click', function(e) {
+                // alert('welcome');
 
-                        var addDisplay = document.getElementById("showInfo").innerHTML;
+                var addDisplay = document.getElementById("showInfo").innerHTML;
 
-                        var table = document.getElementById("template").innerHTML;
-                        var theTemplate = Handlebars.compile(table);
-                        var shoeId = e.target.value;
+                var table = document.getElementById("template").innerHTML;
+                var theTemplate = Handlebars.compile(table);
+                var shoeId = e.target.value;
 
-                        $.ajax({
-                                url: 'http://localhost:3018/api/shoes/sold/' + shoeId,
-                                type: 'POST',
-                                dataType: 'application/json',
-                                error: function(data) {
-                                        addDisplay.innerHTML = theTemplate({
-                                                stock: shoeId.data
-                                        })
-                                },
-                                sucess: function(error) {
-                                        alert('error cant buy shoe')
+                $.ajax({
+                        url: 'http://localhost:3018/api/shoes/sold/' + shoeId,
+                        type: 'POST',
+                        dataType: 'application/json',
+                        error: function(data) {
+                        //         addDisplay.innerHTML = theTemplate({
+                        //                 stock: shoeId.data
+                        //         })
+                        },
+                        sucess: function(error) {
+                                alert('error cant buy shoe')
+                        }
+                })
+        });
+
+        // filters through all the information in the database
+        $('#search').on('keyup', function() {
+
+                var input, filter, table, tr, td;
+                input = document.getElementById("myInput");
+                filter = search.value.toUpperCase();
+                table = document.getElementById("tableData");
+                tRow = table.getElementsByTagName("tr");
+                for (var i = 0; i < tRow.length; i++) {
+                        td = tRow[i].getElementsByTagName("td")[0];
+                        tdS = tRow[i].getElementsByTagName("td")[2];
+                        if (td || tdS) {
+                                if (td.innerHTML.toUpperCase().indexOf(filter) > -1 || tdS.innerHTML.indexOf(filter) > -1) {
+                                        tRow[i].style.display = "";
+                                } else {
+                                        tRow[i].style.display = "none";
                                 }
-                        })
-                });
-});
+                        }
+                }
+        });
 
-// filters through all the information in the database
-$('#myInput').on('keyup', function() {
 
-    var input, filter, table, tr, td, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("tableData");
-    tRow = table.getElementsByTagName("tr");
-    for (i = 0; i < tRow.length; i++) {
-        td = tRow[i].getElementsByTagName("td")[0];
-        tdS = tRow[i].getElementsByTagName("td")[2];
-        if (td || tdS) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1 || tdS.innerHTML.indexOf(filter) > -1) {
-                tRow[i].style.display = "";
-            } else {
-                tRow[i].style.display = "none";
-            }
-        }
-    }
-});
+
+
+        $('#filterBrand').on('change',function(e){
+                var foundBrand = e.target.value;
+                var drops = document.querySelector(".drops");
+                var uniqueDropdowns = document.getElementById("dropDowns").innerHTML;
+                var dropdowns = Handlebars.compile(uniqueDropdowns);
+
+                var button, filter, table, tr, td;
+                button = document.getElementById("filterBrand");
+                filter = search.value.toUpperCase();
+                table = document.getElementById("tableData");
+                tRow = table.getElementsByTagName("tr");
+
+                $.ajax({
+                        url: 'http://localhost:3018/api/shoes/brand/' + foundBrand,
+                        type: 'GET',
+                        error: function(data) {
+                                addDisplay.innerHTML = theTemplate({
+                                        data
+                                })
+                                if (foundBrand.length <= 0) {
+                                        dropDownDisplay.innerHTML = "No match"                                }
+                                if (foundBrand.length< 0) {
+                                        dropDownDisplay.innerHTML = dropdowns({
+                                                stock: data
+                                        })
+                                }
+                        },
+                        sucess: function(error) {
+                                alert('error cant buy shoe')
+                        }
+                //    addDisplay.innerHTML = tableSearch;
+
+           })
+   })
+   .change();
+        })

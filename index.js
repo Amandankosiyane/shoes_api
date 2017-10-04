@@ -44,6 +44,7 @@ app.use(flash());
 // app.get('/api/shoes', ShoeRoutes.shoes);
 app.get('/api/shoes', ShoeRoutes.AllShoes);
 app.get('/api/shoes/brand/:brandname', ShoeRoutes.showBrands);
+app.get('/api/shoes/brands', ShoeRoutes.allBrands);
 app.get('/api/shoes/size/:size', ShoeRoutes.showSizes);
 app.get('/api/shoes/color/:color', ShoeRoutes.showColors);
 app.get('/api/shoes/brand/:brandname/size/:size', ShoeRoutes.showBrandSize);

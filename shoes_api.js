@@ -29,6 +29,27 @@ module.exports = function(models) {
                 })
         }
 
+        const allBrands = function(req, res, next) {
+                models.storeShoes.find({}, function(err, allBrands) {
+                        var brands = [];
+                        var BrandMap = {};
+
+                        for (var i=0; i<allBrands.length;i++){
+                            var newBrand = allBrands[i];
+                            if(BrandMap[newBrand.Brand] === undefined){
+                                BrandMap[newBrand.Brand] = newBrand.Brand;
+                                brands.push(newBrand.Brand);
+                            }
+                        }
+                        if (err) {
+                                return next(err)
+                        }else{
+
+                                res.json({brands: allBrands})
+                        }
+                })
+        }
+
         const showSizes = function(req, res, next) {
                 var size = req.params.size
                 models.storeShoes.find({
@@ -122,6 +143,7 @@ module.exports = function(models) {
                 // shoes,
                 AllShoes,
                 showBrands,
+                allBrands,
                 showSizes,
                 showColors,
                 showBrandSize,

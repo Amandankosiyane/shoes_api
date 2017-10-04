@@ -3,6 +3,10 @@
 
 <head>
         <style type="text/css">
+                .search {
+                        background-image: url('/css/searchicon.png');
+                }
+
                 .table {
                         text-align: center;
                         margin: 0 auto;
@@ -16,7 +20,8 @@
                         box-shadow: 0 0 30px hotpink;
                         padding: 0 15px 0 15px;
                 }
-                .h1{
+
+                .h1 {
                         /*font-size: 20em;*/
                         text-align: center;
                         /*width: 50%;*/
@@ -47,60 +52,35 @@
         <body>
 
                 <div class="container">
-                        <div class="row" >
+                        <div class="row">
 
                                 <!-- </div> -->
                                 <div class="col-lg-4 form-inline ">
                                         <form class="float-right" action="shoeApi.html" method="post">
+                                                <label class="text-center" for="search">Brand or Color:</label>
+                                                <br>
                                                 <input id="search" type="text" name="" value="" class="search form-control" placeholder="search">
-                                                <!-- <button class="btn btn-primary" id="searchStock">Search</button> -->
+                                                <button class="btn btn-primary" id="searchStock">Search</button>
                                         </form>
                                 </div>
                                 <div class="col col-lg-4">
                                         <p id="userDisplay"></p>
                                 </div>
-                                </div
+                        </div <br><br>
+                        <form class="float-right" action="ShoeApi.html" method="post">
+                                <select id="filterBrandBtn" class="btn btn-default btn-xs col-lg-4 form-inline dropdown" placeholder=>
 
-                        <br><br>
-                        <div class="drops">
-                        </div>
-<!-- <form class="float-right" action="ShoeApi.html" method="post"> -->
-                        <!-- <script id="dropDowns" type="text/x-handlebars-template"> -->
+                                </select>
+                        </form>
+                        <script id="dropDowns" type="text/x-handlebars-template">
                                 <!-- <div class=" btn-group col-lg-4"> -->
-                                <!-- <button id="filterBrand" class="btn btn-default btn-xs col-lg-4 form-inline dropdown"> -->
-                                                        <!-- <p class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Brand <span class="caret"></span></p> -->
-                                                        <!-- <ul class=" form-inline dropdown-menu" role="menu"> -->
-                                                                <!-- <select  class=" form-inline dropdown-menu" role="menu" id='filterBrand'> -->
-                                                                <!-- {{#each stock}} -->
-                                                          <!-- <option id="filterBrand" value="brand"><a href="#">{{this.Brand}}</a></option> -->
-                                                          <!-- {{/each}} -->
-                                                  <!-- </select> -->
-                                                  <!-- </ul> -->
-                                          <!-- </button> -->
-                                <!-- <button class="btn btn-default btn-xs col-lg-4 form-inline dropdown"> -->
-                                                        <!-- <p class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Color <span class="caret"></span></p> -->
-                                                        <!-- <ul class="dropdown-menu" role="menu"> -->
-                                                                <!-- <select class="dropdown-menu" role="menu"> -->
-                                                                <!-- {{#each stock}} -->
-                                                          <!-- <option>{{this.Color}}</option> -->
-                                                          <!-- {{/each}} -->
-                                                  <!-- </select> -->
-                                                  <!-- </ul> -->
-                                          <!-- </button> -->
-                                <!-- <button class="btn btn-default btn-xs col-lg-4 form-inline dropdown"> -->
-                                                        <!-- <p class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Size <span class="caret"></span></p> -->
-                                                        <!-- <ul class="dropdown-menu" role="menu"> -->
-                                                                <!-- <select class="dropdown-menu" role="menu" id="filterSize"> -->
-                                                                <!-- {{#each stock}} -->
-                                                          <!-- <option><a href="#">{{this.Size}}</a></option> -->
-                                                          <!-- {{/each}} -->
-                                                  <!-- </select> -->
-                                                  <!-- </ul> -->
-                                          <!-- </button> -->
-                                  <!-- </div> -->
-                                          <!-- </form> -->
-                                        </script>
-                        <!-- <br><br><br> -->
+                                <!-- <p class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Brand <span class="caret"></span></p> -->
+                                <div class=" form-inline dropdown-menu" role="menu" id="filterBrands">
+                                        {{#each stock}}
+                                        <option id="filterBrand" value={{this.Brand}}>{{this.Brand}}</option>
+                                        {{/each}}
+                                </div>
+                        </script>
 
                         <script id="template" type="text/x-handlebars-template">
                                 <div class="table-responsive">
@@ -137,7 +117,7 @@
                         <div id="showInfo"></div>
 </form>
 
-<form class=" form-group  jumbotron-fluid"  method="post">
+<form class=" form-group  jumbotron-fluid" method="post">
         <div id="addingMyStock" align="center">
 
                 <div class="container">

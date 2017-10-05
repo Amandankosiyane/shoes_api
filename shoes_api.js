@@ -34,21 +34,24 @@ module.exports = function(models) {
                         var brands = [];
                         var BrandMap = {};
 
-                        for (var i=0; i<allBrands.length;i++){
-                            var newBrand = allBrands[i];
-                            if(BrandMap[newBrand.Brand] === undefined){
-                                BrandMap[newBrand.Brand] = newBrand.Brand;
-                                brands.push(newBrand.Brand);
-                            }
+                        for (var i = 0; i < allBrands.length; i++) {
+                                var newBrand = allBrands[i];
+                                if (BrandMap[newBrand.Brand] === undefined) {
+                                        BrandMap[newBrand.Brand] = newBrand.Brand;
+                                        brands.push(newBrand.Brand);
+                                }
                         }
                         if (err) {
                                 return next(err)
-                        }else{
-
-                                res.json({brands: allBrands})
                         }
+
+                        res.json({
+                                brands: brands.sort("a-z")
+                        })
+
                 })
         }
+
 
         const showSizes = function(req, res, next) {
                 var size = req.params.size
@@ -61,6 +64,29 @@ module.exports = function(models) {
                         res.json({
                                 foundSize
                         })
+                })
+        }
+
+        const allSizes = function(req, res, next) {
+                models.storeShoes.find({}, function(err, allSizes) {
+                        var sizes = [];
+                        var sizeMap = {};
+
+                        for (var i = 0; i < allSizes.length; i++) {
+                                var newSize = allSizes[i];
+                                if (sizeMap[newSize.Size] === undefined) {
+                                        sizeMap[newSize.Size] = newSize.Size;
+                                        sizes.push(newSize.Size);
+                                }
+                        }
+                        if (err) {
+                                return next(err)
+                        }
+
+                        res.json({
+                                sizes: sizes.sort()
+                        })
+
                 })
         }
 
@@ -79,6 +105,28 @@ module.exports = function(models) {
                 })
         }
 
+        const allColors = function(req, res, next) {
+                models.storeShoes.find({}, function(err, allColors) {
+                        var colors = [];
+                        var colorMap = {};
+
+                        for (var i = 0; i < allColors.length; i++) {
+                                var newColor = allColors[i];
+                                if (colorMap[newColor.Color] === undefined) {
+                                        colorMap[newColor.Color] = newColor.Brand;
+                                        colors.push(newColor.Color);
+                                }
+                        }
+                        if (err) {
+                                return next(err)
+                        }
+
+                        res.json({
+                                colors: colors.sort("a-z")
+                        })
+
+                })
+        }
 
         const showBrandSize = function(req, res, next) {
                 var brandname = req.params.brandname;
@@ -145,7 +193,9 @@ module.exports = function(models) {
                 showBrands,
                 allBrands,
                 showSizes,
+                allSizes,
                 showColors,
+                allColors,
                 showBrandSize,
                 updatingStock,
                 addNewShoes

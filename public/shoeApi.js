@@ -8,9 +8,54 @@ $(function() {
         var dropDowns = document.getElementById("dropDowns").innerHTML;
         var uniqueDropdowns = Handlebars.compile(dropDowns);
 
-        // $("#searchStock").on("click", function(){
-        // document.getElementById("searchStock").addEventListener("onclick", showAll)
-        // function showAll(){
+        var dropDownFilterSizeBtn = document.querySelector("#filterSizeBtn");
+        var dropDownSize = document.getElementById("dropDownSize").innerHTML;
+        var uniqueDropDownSize = Handlebars.compile(dropDownSize);
+        console.log("##########################", uniqueDropDownSize);
+
+
+        var dropDownColorFilter = document.querySelector("#filterColorBtn");
+        var dropDownColor = document.getElementById("dropDownColor").innerHTML;
+        var uniqueDropownColor = Handlebars.compile(dropDownColor);
+
+
+$.ajax({
+        url: 'http://localhost:3018/api/shoes/brands',
+        type: 'GET',
+        success: function(data){
+                dropDownDisplay.innerHTML = uniqueDropdowns({
+                        stock: data.allBrands
+                })
+        },
+        error: function(err){
+                alert('error')
+        }
+})
+$.ajax({
+        url: 'http://localhost:3018/api/shoes/colors',
+        type: 'GET',
+        success: function(data){
+                dropDownColorFilter.innerHTML = uniqueDropownColor({
+                        stock: data
+                })
+        },
+        error: function(err){
+                alert('error')
+        }
+})
+$.ajax({
+        url: 'http://localhost:3018/api/shoes/sizes',
+        type: 'GET',
+        success: function(data){
+                dropDownFilterSizeBtn.innerHTML = uniqueDropDownSize({
+                        stock: data
+                })
+        },
+        error: function(err){
+                alert('error')
+        }
+})
+
         $.ajax({
                 url: 'http://localhost:3018/api/shoes',
                 type: 'GET',
@@ -21,12 +66,19 @@ $(function() {
                         dropDownDisplay.innerHTML = uniqueDropdowns({
                                 stock: data
                         })
+                        dropDownFilterSizeBtn.innerHTML = uniqueDropDownSize({
+                                stock: data
+                        })
+                        dropDownColorFilter.innerHTML = uniqueDropownColor({
+                                stock: data
+                        })
                 },
                 error: function(error) {
                         // alert('Stock loading error');
                 }
         });
-        // });
+
+
         //ajax call to  add a shoe in the database
         $('#addBtn').on('click', function() {
                 var brand = document.getElementById('addingBrand').value;
@@ -36,9 +88,6 @@ $(function() {
                 var price = document.getElementById('addingPrice').value;
                 console.log(price);
                 var addDisplay = document.getElementById("showInfo");
-
-                var table = document.getElementById("template").innerHTML;
-                var theTemplate = Handlebars.compile(table);
 
                 var Addshoes = {
                         Brand: brand,
@@ -68,7 +117,7 @@ $(function() {
         $('#showInfo').on('click', function(e) {
                 // alert('welcome');
 
-                var addDisplay = document.getElementById("showInfo").innerHTML;
+                // var addDisplay = document.getElementById("showInfo").innerHTML;
 
                 var table = document.getElementById("template").innerHTML;
                 var theTemplate = Handlebars.compile(table);
@@ -79,9 +128,9 @@ $(function() {
                         type: 'POST',
                         dataType: 'application/json',
                         success: function(data) {
-                                //         addDisplay.innerHTML = theTemplate({
-                                //                 stock: shoeId.data
-                                //         })
+                                if (data.newShoes <= 0) {
+                                        datanewShoes.style.display = "";
+                                }
                         },
                         error: function(error) {
                                 // alert('error cant buy shoe')
@@ -112,32 +161,61 @@ $(function() {
         })
 
 
-        var uniqueBrandUrl = 'http://localhost:3018/api/shoes/brands';
-
         $("#filterBrandBtn").on('click', function() {
+                var filterBrand = document.getElementById("filterBrandBtn").value;
 
-                // $.get(uniqueBrandUrl, function(brands) {
+                console.log(filterBrand);
 
-                        var filterBrand = document.getElementById("filterBrandBtn").value;
-                        console.log(filterBrand);
+                var filterBrandUrl = 'http://localhost:3018/api/shoes/brand/' + filterBrand;
 
-                        var filterBrandUrl = 'http://localhost:3018/api/shoes/brand/' + filterBrand;
+                $.ajax({
+                        url: filterBrandUrl,
+                        type: "GET",
+                        success: function(data) {
+                                addDisplay.innerHTML = theTemplate({
+                                        stock: data.foundBrand
+                                })
+                        },
+                        error: function(data) {
+                                alert("error cant filter")
+                        }
+                })
 
-                        $.ajax({
-                                url: filterBrandUrl,
-                                type: "GET",
-                                // dataType: "json",
-                                success: function(data) {
-                                        addDisplay.innerHTML = theTemplate({
-                                                stock: data.foundBrand
-                                        })
-                                },
-                                error: function(data) {
-                                        alert("error cant filter")
-                                }
-                        })
+        })
 
+        $("#filterSizeBtn").on("click", function() {
+                var filterSze = document.querySelector("#filterSizeBtn");
+                var size = filterSze.value;
 
-                // })
+                var filterSizeUrl = 'http://localhost:3018/api/shoes/size/' + size;
+                $.ajax({
+                        url: filterSizeUrl,
+                        type: "GET",
+                        success: function(data) {
+                                addDisplay.innerHTML = theTemplate({
+                                        stock: data.foundSize
+                                })
+                        },
+                        error: function(err) {
+                                alert('error while filtering')
+                        }
+                })
+        })
+        $("#filterColorBtn").on("click", function() {
+                var filterColor = document.getElementById("filterColorBtn").value;
+                var filterColorUrl = 'http://localhost:3018/api/shoes/color/' + filterColor;
+
+                $.ajax({
+                        url: filterColorUrl,
+                        type: "GET",
+                        success: function(data) {
+                                addDisplay.innerHTML = theTemplate({
+                                        stock: data.foundColor
+                                })
+                        },
+                        error: function(err) {
+                                alert('error while filtering color')
+                        }
+                })
         })
 })

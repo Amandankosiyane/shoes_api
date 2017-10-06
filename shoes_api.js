@@ -2,7 +2,9 @@ const ObjectId = require("mongodb").ObjectId;
 module.exports = function(models) {
 
         const shoes = function(req, res, next) {
-                res.send({shoes})
+                res.send({
+                        shoes
+                })
         }
 
         const AllShoes = function(req, res, next) {
@@ -158,13 +160,17 @@ module.exports = function(models) {
                 }, {
                         upsert: false
                 }, function(err, soldShoes) {
+                        console.log(soldShoes.InStock);
                         if (err) {
                                 return res.json({
                                         status: "error",
                                         error: err,
                                         newShoes: []
                                 });
-                        } else {
+                        }
+
+                        if (soldShoes.InStock <= 0) {
+                                soldShoes.remove()
                                 res.json({
                                         status: "success",
                                         newShoes: soldShoes
@@ -175,17 +181,36 @@ module.exports = function(models) {
 
         const addNewShoes = function(req, res, next) {
                 var newShoes = req.body
-                models.storeShoes.create({
+                models.storeShoes.findOneAndUpdate({
                         Brand: newShoes.Brand,
                         Color: newShoes.Color,
                         Price: newShoes.Price,
-                        Size: newShoes.Size,
-                        InStock: newShoes.InStock
+                        Size: newShoes.Size
+                }, {
+                        $inc: {
+                                InStock: newShoes.InStock
+                        }
                 }, function(err, newShoesData) {
                         if (err) {
                                 return next(err)
+                        } else if (!newShoesData) {
+
+                                models.storeShoes.create({
+                                        Brand: newShoes.Brand,
+                                        Color: newShoes.Color,
+                                        Price: newShoes.Price,
+                                        Size: newShoes.Size,
+                                        InStock: newShoes.InStock
+                                }, function(err, newShoesData) {
+                                        console.log(newShoes.Brand);
+                                        if (err) {
+                                                return next(err)
+                                        }
+                                });
                         }
-                        res.send(newShoesData)
+                        res.json({
+                                newShoesData: newShoesData
+                        })
                 })
         }
 

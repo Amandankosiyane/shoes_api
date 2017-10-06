@@ -63,9 +63,9 @@ $.ajax({
         }
 })
 
-// Ajax call to display the all the shoes from  database
+// Ajax call to display the data from the database
         $.ajax({
-                url: 'https://secure-brushlands-15616.herokuapp.com/api/shoes',
+                url: 'http://localhost:3018/api/shoes',
                 type: 'GET',
                 success: function(data) {
                         addDisplay.innerHTML = theTemplate({
@@ -81,12 +81,16 @@ $.ajax({
 
         //ajax call to  add  shoes to the database
         $('#addBtn').on('click', function() {
-                var brand = document.getElementById('addingBrand').value;
-                var color = document.getElementById('addingColor').value;
+                var displayMessage = document.getElementById('showMessage')
+                var brand = document.getElementById('addingBrand').value.toUpperCase();
+                var color = document.getElementById('addingColor').value.toUpperCase();
                 var size = document.getElementById('addingSize').value;
                 var stock = document.getElementById('addingStock').value;
                 var price = document.getElementById('addingPrice').value;
-                console.log(price);
+                if (brand == null || brand.length == 0  && color == null || color.length == 0 && size == null || size.length == 0 && stock == null || stock.length == 0 && price == null || price.length == 0) {
+                        alert('These fields must not be empty')
+                        return false;
+                }
                 var addDisplay = document.getElementById("showInfo");
 
                 var Addshoes = {
@@ -103,7 +107,6 @@ $.ajax({
                         dataType: "json",
                         data: Addshoes,
                         success: function(data) {
-                                console.log(Addshoes);
                                 addDisplay.innerHTML = theTemplate({
                                         stock: Addshoes
                                 })
@@ -126,10 +129,6 @@ $.ajax({
                         type: 'POST',
                         dataType: 'application/json',
                         success: function(data) {
-                                console.log(data.newShoes);
-                                if (data.newShoes <= 0) {
-                                        datanewShoes.style.display = "";
-                                }
                         },
                         error: function(error) {
                                 // alert('error cant buy shoe')

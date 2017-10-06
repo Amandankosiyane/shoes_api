@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 module.exports = function(mongoUrl) {
-        mongoose.connect(mongoUrl);
+        mongoose.connect(mongoUrl, {
+                useMongoclient: true
+        });
         const shoesSchema = mongoose.Schema({
                 Brand: String,
                 Color: String,

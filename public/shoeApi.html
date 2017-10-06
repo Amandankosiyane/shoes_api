@@ -11,9 +11,7 @@
                         text-align: center;
                         margin: 0 auto;
                         width: 80%;
-                        /*border-color: slategrey;*/
                         border-collapse: collapse;
-                        /*border-radius: 50px;*/
                         border-spacing: 3px;
                         border: 5px solid blue;
                         margin-top: 50px;
@@ -131,7 +129,7 @@
                                                                 <td class="td active" style="border-radius: 5px">{{Color}}</td>
                                                                 <td class="td active" style="border-radius: 5px">{{Size}}</td>
                                                                 <td class="td active" style="border-radius: 5px">{{InStock}}</td>
-                                                                <td class="td active" style="border-radius: 5px"> R {{Price}} <br>
+                                                                <td class="td active" style="border-radius: 5px"> R {{Price}}.00 <br>
                                                                         <div class=" popup col-1">
                                                                                 <form class=" form-group" action="shoeApi.html" method="post">
                                                                                         <button class=" btn btn-success" value={{_id}} class="btn btn-primary" id="buyShoe">Buy</button>
@@ -145,11 +143,13 @@
                                 </div>
                         </script>
                         <div id="showInfo"></div>
-</form>
+                </form>
+
+                <div class="color-res" id="showMessage">
+                </div>
 
 <form class=" form-group  jumbotron-fluid" method="post">
         <div id="addingMyStock" align="center">
-
                 <div class="container">
                         <div class="row">
                                 <div class="col-sm-4">
@@ -179,6 +179,7 @@
 </form>
 <script src="shoeApi.js" charset="utf-8"></script>
 </div>
+
 </body>
 
 </html>

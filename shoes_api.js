@@ -84,7 +84,9 @@ module.exports = function(models) {
                         }
 
                         res.json({
-                                sizes: sizes.sort()
+                                sizes: sizes.sort(function(a, b) {
+                                        return (a - b)
+                                })
                         })
 
                 })

@@ -23,20 +23,22 @@ $.ajax({
         url: 'http://localhost:3018/api/shoes/brands',
         type: 'GET',
         success: function(data){
+                console.log("--------------------", data.brands);
                 dropDownDisplay.innerHTML = uniqueDropdowns({
-                        stock: data.allBrands
+                        brand: data.brands
                 })
         },
         error: function(err){
                 alert('error')
         }
 })
+
 $.ajax({
         url: 'http://localhost:3018/api/shoes/colors',
         type: 'GET',
         success: function(data){
                 dropDownColorFilter.innerHTML = uniqueDropownColor({
-                        stock: data
+                        color: data.colors
                 })
         },
         error: function(err){
@@ -48,7 +50,7 @@ $.ajax({
         type: 'GET',
         success: function(data){
                 dropDownFilterSizeBtn.innerHTML = uniqueDropDownSize({
-                        stock: data
+                        size: data.sizes
                 })
         },
         error: function(err){
@@ -63,15 +65,7 @@ $.ajax({
                         addDisplay.innerHTML = theTemplate({
                                 stock: data
                         })
-                        dropDownDisplay.innerHTML = uniqueDropdowns({
-                                stock: data
-                        })
-                        dropDownFilterSizeBtn.innerHTML = uniqueDropDownSize({
-                                stock: data
-                        })
-                        dropDownColorFilter.innerHTML = uniqueDropownColor({
-                                stock: data
-                        })
+
                 },
                 error: function(error) {
                         // alert('Stock loading error');

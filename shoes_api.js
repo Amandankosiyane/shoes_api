@@ -1,9 +1,9 @@
 const ObjectId = require("mongodb").ObjectId;
 module.exports = function(models) {
 
-        // const shoes = function(req, res, next) {
-        //         res.send({shoes})
-        // }
+        const shoes = function(req, res, next) {
+                res.send({shoes})
+        }
 
         const AllShoes = function(req, res, next) {
                 models.storeShoes.find({}, function(err, foundShoes) {
@@ -190,7 +190,7 @@ module.exports = function(models) {
         }
 
         return {
-                // shoes,
+                shoes,
                 AllShoes,
                 showBrands,
                 allBrands,

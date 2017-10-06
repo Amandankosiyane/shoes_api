@@ -18,6 +18,7 @@ $(function() {
         var dropDownColor = document.getElementById("dropDownColor").innerHTML;
         var uniqueDropownColor = Handlebars.compile(dropDownColor);
 
+// Ajax call for unique brand value and sort alphabetically
 
 $.ajax({
         url: 'http://localhost:3018/api/shoes/brands',
@@ -33,6 +34,7 @@ $.ajax({
         }
 })
 
+// Ajax call for unique color value and sort alphabetically
 $.ajax({
         url: 'http://localhost:3018/api/shoes/colors',
         type: 'GET',
@@ -45,6 +47,8 @@ $.ajax({
                 alert('error')
         }
 })
+
+//Ajax call for unique size value and sort in ascending order
 $.ajax({
         url: 'http://localhost:3018/api/shoes/sizes',
         type: 'GET',
@@ -58,6 +62,7 @@ $.ajax({
         }
 })
 
+// Ajax call to display the data 
         $.ajax({
                 url: 'http://localhost:3018/api/shoes',
                 type: 'GET',

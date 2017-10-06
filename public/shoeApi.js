@@ -1,19 +1,21 @@
 $(function() {
-        var addDisplay = document.getElementById("showInfo");
 
+        // Compiling the table
+        var addDisplay = document.getElementById("showInfo");
         var table = document.getElementById("template").innerHTML;
         var theTemplate = Handlebars.compile(table);
 
+//  Compiling the brand dropdown
         var dropDownDisplay = document.querySelector("#filterBrandBtn");
         var dropDowns = document.getElementById("dropDowns").innerHTML;
         var uniqueDropdowns = Handlebars.compile(dropDowns);
 
+//  Compiling the size
         var dropDownFilterSizeBtn = document.querySelector("#filterSizeBtn");
         var dropDownSize = document.getElementById("dropDownSize").innerHTML;
         var uniqueDropDownSize = Handlebars.compile(dropDownSize);
-        console.log("##########################", uniqueDropDownSize);
 
-
+//  Compiling the color
         var dropDownColorFilter = document.querySelector("#filterColorBtn");
         var dropDownColor = document.getElementById("dropDownColor").innerHTML;
         var uniqueDropownColor = Handlebars.compile(dropDownColor);
@@ -24,7 +26,6 @@ $.ajax({
         url: 'http://localhost:3018/api/shoes/brands',
         type: 'GET',
         success: function(data){
-                console.log("--------------------", data.brands);
                 dropDownDisplay.innerHTML = uniqueDropdowns({
                         brand: data.brands
                 })
@@ -62,9 +63,9 @@ $.ajax({
         }
 })
 
-// Ajax call to display the data 
+// Ajax call to display the all the shoes from  database
         $.ajax({
-                url: 'http://localhost:3018/api/shoes',
+                url: 'https://secure-brushlands-15616.herokuapp.com/api/shoes',
                 type: 'GET',
                 success: function(data) {
                         addDisplay.innerHTML = theTemplate({
@@ -78,7 +79,7 @@ $.ajax({
         });
 
 
-        //ajax call to  add a shoe in the database
+        //ajax call to  add  shoes to the database
         $('#addBtn').on('click', function() {
                 var brand = document.getElementById('addingBrand').value;
                 var color = document.getElementById('addingColor').value;
@@ -113,10 +114,8 @@ $.ajax({
                 })
         })
 
+//Ajax call to buy shoes
         $('#showInfo').on('click', function(e) {
-                // alert('welcome');
-
-                // var addDisplay = document.getElementById("showInfo").innerHTML;
 
                 var table = document.getElementById("template").innerHTML;
                 var theTemplate = Handlebars.compile(table);
@@ -127,6 +126,7 @@ $.ajax({
                         type: 'POST',
                         dataType: 'application/json',
                         success: function(data) {
+                                console.log(data.newShoes);
                                 if (data.newShoes <= 0) {
                                         datanewShoes.style.display = "";
                                 }
@@ -137,6 +137,7 @@ $.ajax({
                 })
         });
 
+// Filter using a textbox, filter by brand and color
         $('#search').on('keyup', function() {
                 var input, filter, found, table, tr, td;
                 input = document.getElementById("myInput");
@@ -160,6 +161,7 @@ $.ajax({
         })
 
 
+//Ajax call to filter by brand
         $("#filterBrandBtn").on('click', function() {
                 var filterBrand = document.getElementById("filterBrandBtn").value;
 
@@ -182,6 +184,8 @@ $.ajax({
 
         })
 
+
+//  Ajax call to filter by size
         $("#filterSizeBtn").on("click", function() {
                 var filterSze = document.querySelector("#filterSizeBtn");
                 var size = filterSze.value;
@@ -200,6 +204,9 @@ $.ajax({
                         }
                 })
         })
+
+
+        //  Ajax call to filter by color
         $("#filterColorBtn").on("click", function() {
                 var filterColor = document.getElementById("filterColorBtn").value;
                 var filterColorUrl = 'http://localhost:3018/api/shoes/color/' + filterColor;

@@ -49,11 +49,36 @@
 
         <body>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">About</a></li>
-                    <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Home</a></li>
-                    <li class=""><a href="#registration" data-toggle="tab" aria-expanded="false">Add stock</span></a></li>
+                    <li class=""><a href="#about" data-toggle="tab" aria-expanded="true">About</a></li>
+                    <li class="active"><a href="#home" data-toggle="tab" aria-expanded="false">Home</a></li>
+                    <li class=""><a href="#addStock" data-toggle="tab" aria-expanded="true">Add stock</span></a></li>
                 </ul>
 
+                <div  class="tab-pane fade active in" id="about">
+                        <h3>ABOUT THIS WEB APPLICATION</h2>
+                        <h5 class="text-info">Welcome to Amanda's online shoe catalogue.</h5>
+                        <h6>This web applictaion anables people to search and buy stock,<br>
+                                also enables the admin to add new stok and update the existing one.<br>
+                                If the stock is sold out then that stock should dissapear from the database.</h6>
+                        <p class="text-success"><b>As the customer you are able to:<b></p>
+
+                        <ul>
+                                <li>See tha available shoes in the shop</li>
+                                <li>Search the shoes they want using the text area</li>
+                                <li>Search the shoes they want using the dropdowns</li>
+                                <li>buy the shoes that they want</li>
+                        </ul>
+
+                        <p class="text-success"><b>As the admin i am able to:</b></p>
+
+                        <ul>
+                                <li>Add new stock</li>
+                                <li>Update the existing stock</li>
+                        </ul>
+
+                </div>
+
+<div class="tab-pane fade active in" id="home">
                 <div class="container">
                         <div class="row">
                                 <div class="col-lg-4 form-inline ">
@@ -61,7 +86,7 @@
                                                 <label class="text-center" for="search">Brand or Color:</label>
                                                 <br>
                                                 <input id="search" type="search" name="" value="" class=" input-search search form-control" placeholder="search">
-                                                <button class=" btn btn-primary" id="searchStock">Search</button>
+                                                <button class=" btn btn-danger" id="searchStock">Search</button>
                                         </form>
                                 </div>
                                 <div class="col col-lg-4">
@@ -147,7 +172,11 @@
 
                 <div class="color-res" id="showMessage">
                 </div>
+        </div>
+</div>
+</div>
 
+                <div class="tab-pane fade" id="addStock">
 <form class=" form-group  jumbotron-fluid" method="post">
         <div id="addingMyStock" align="center">
                 <div class="container">
@@ -175,11 +204,10 @@
                         </div>
                 </div>
         </div>
-
+</div>
 </form>
 <script src="shoeApi.js" charset="utf-8"></script>
-</div>
+
 
 </body>
-
 </html>

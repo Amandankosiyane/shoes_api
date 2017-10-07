@@ -3,9 +3,7 @@
 
 <head>
         <style type="text/css">
-                .search {
-                        background-image: url('/css/searchicon.png');
-                }
+li.active{color:red}
 
                 .table {
                         text-align: center;
@@ -46,15 +44,17 @@
 
         <h1 class="h1 text-center">SHOE CATALOGUE API</h1>
         <br>
+        <br>
 
         <body>
-                <ul class="nav nav-tabs">
-                    <li class=""><a href="#about" data-toggle="tab" aria-expanded="true">About</a></li>
-                    <li class="active"><a href="#home" data-toggle="tab" aria-expanded="false">Home</a></li>
-                    <li class=""><a href="#addStock" data-toggle="tab" aria-expanded="true">Add stock</span></a></li>
-                </ul>
-
-                <div  class="tab-pane fade active in" id="about">
+                <!-- <div id="menu"> -->
+                <!-- <ul class="nav nav-tabs"> -->
+                    <!-- <li class="active"><a href="#home">Home</a></li> -->
+                    <!-- <li class=""><a href="#addStock">Add stock</span></a></li> -->
+                    <!-- <li class=""><a href="#about" data-toggle="tab" aria-expanded="true">About</a></li> -->
+                <!-- </ul> -->
+<!-- </div> -->
+                <!-- <div  class="tab-pane fade active in" id="about">
                         <h3>ABOUT THIS WEB APPLICATION</h2>
                         <h5 class="text-info">Welcome to Amanda's online shoe catalogue.</h5>
                         <h6>This web applictaion anables people to search and buy stock,<br>
@@ -76,9 +76,9 @@
                                 <li>Update the existing stock</li>
                         </ul>
 
-                </div>
+                </div> -->
 
-<div class="tab-pane fade active in" id="home">
+<!-- <div class="tab-pane" id="home"> -->
                 <div class="container">
                         <div class="row">
                                 <div class="col-lg-4 form-inline ">
@@ -86,7 +86,7 @@
                                                 <label class="text-center" for="search">Brand or Color:</label>
                                                 <br>
                                                 <input id="search" type="search" name="" value="" class=" input-search search form-control" placeholder="search">
-                                                <button class=" btn btn-danger" id="searchStock">Search</button>
+                                                <!-- <button class=" btn btn-danger" id="searchStock">Search</button> -->
                                         </form>
                                 </div>
                                 <div class="col col-lg-4">
@@ -174,9 +174,9 @@
                 </div>
         </div>
 </div>
-</div>
+<!-- </div> -->
 
-                <div class="tab-pane fade" id="addStock">
+                <div class="tab-pane" id="addStock">
 <form class=" form-group  jumbotron-fluid" method="post">
         <div id="addingMyStock" align="center">
                 <div class="container">
@@ -198,7 +198,7 @@
                                         <div id="addStockFirst"></div>
 
                                         <div class="col col-lg-2">
-                                                <button class="btn btn-primary" id="addBtn">Add Stock</button>
+                                                <button class="btn btn-danger" id="addBtn">Add Stock</button>
                                         </div>
                                 </div>
                         </div>

@@ -161,6 +161,23 @@ $(function() {
         })
 
 
+$("#showAllStock").on("click", function(){
+        $.ajax({
+                url: 'https://secure-brushlands-15616.herokuapp.com/api/shoes',
+                type: 'GET',
+                success: function(data) {
+                        addDisplay.innerHTML = theTemplate({
+                                stock: data
+                        })
+
+                },
+                error: function(error) {
+                        // alert('Stock loading error');
+                }
+        });
+
+})
+
         //Ajax call to filter by brand
         $("#filterBrandBtn").on('click', function() {
                 var filterBrand = document.getElementById("filterBrandBtn").value;

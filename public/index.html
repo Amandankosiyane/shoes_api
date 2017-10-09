@@ -66,6 +66,7 @@
                                                 <label class="text-center" for="search">Brand or Color:</label>
                                                 <br>
                                                 <input id="search" type="search" class=" input-search search form-control" placeholder="search">
+
                                         </form>
                                 </div>
                                 <div class="col col-lg-4">
@@ -92,7 +93,7 @@
                                 </select>
 
                                                         <script id="dropDownSize" type="text/x-handlebars-template">
-                                                                <option value="Select Brand" disabled="">Select Brand</option>
+                                                                <option value="Select Brand" disabled="">Select size</option>
                                                                 <div class=" form-inline dropdown-menu" role="menu" id="filterSize">
                                                                         {{#each size}}
                                                                         <option id="filterSize">{{this}}</option>
@@ -103,6 +104,8 @@
                                                         <form class="float-right">
                                                                 <select id="filterColorBtn" class="btn btn-default btn-xs col-lg-4 form-inline dropdown" placeholder=>
                                 </select>
+                                <br><br>
+                                <button type="submit" class="btn btn-danger" id="showAllStock">show all</button>
 
                                                                 <script id="dropDownColor" type="text/x-handlebars-template">
                                                                         <option value="Select Color" disabled="">Select Color</option>

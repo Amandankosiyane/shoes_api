@@ -76,11 +76,12 @@
                                         <div class="btn-group -group-justified">
 
                                                 <form class="float-right">
-                                                        <select id="filterBrandBtn" class="btn btn-default btn-xs col-lg-4 form-inline dropdown" placeholder=>
+                                                        <label class="float-right">Brand</label>
+                                                        <select id="filterBrandBtn" class="btn btn-default btn-xs col-lg-6  form-inline dropdown" placeholder=>
                                 </select>
                                                 </form>
                                                 <script id="dropDowns" type="text/x-handlebars-template">
-                                                        <option value="disabled" disabled="">Select Brand</option>
+                                                        <option >Select Brand</option>
                                                         <div class=" form-inline dropdown-menu" role="menu" id="filterBrands">
                                                                 {{#each brand}}
                                                                 <option id="filterBrand">{{this}}</option>
@@ -89,11 +90,12 @@
                                                 </script>
 
                                                 <form class="float-right">
-                                                        <select id="filterSizeBtn" class="btn btn-default btn-xs col-lg-4 form-inline dropdown" placeholder=>
-                                </select>
+                                                        <label>Size</label>
+                                                        <select id="filterSizeBtn" class="btn btn-default btn-xs col-lg-6  form-inline dropdown" placeholder=>
+                                </select></form>
 
                                                         <script id="dropDownSize" type="text/x-handlebars-template">
-                                                                <option value="Select Brand" disabled="">Select size</option>
+                                                                <option >Select Size</option>
                                                                 <div class=" form-inline dropdown-menu" role="menu" id="filterSize">
                                                                         {{#each size}}
                                                                         <option id="filterSize">{{this}}</option>
@@ -102,13 +104,14 @@
                                                         </script>
 
                                                         <form class="float-right">
-                                                                <select id="filterColorBtn" class="btn btn-default btn-xs col-lg-4 form-inline dropdown" placeholder=>
+                                                                <label>Color</label>
+                                                                <select id="filterColorBtn" class="btn btn-default btn-xs col-lg-6  form-inline dropdown" placeholder=>
                                 </select>
                                 <br><br>
                                 <button type="submit" class="btn btn-danger" id="showAllStock">show all</button>
 
                                                                 <script id="dropDownColor" type="text/x-handlebars-template">
-                                                                        <option value="Select Color" disabled="">Select Color</option>
+                                                                        <option >Select Color</option>
                                                                         <div class=" form-inline dropdown-menu" role="menu" id="filterColor">
                                                                                 {{#each color}}
                                                                                 <option id="filterColor">{{this}}</option>

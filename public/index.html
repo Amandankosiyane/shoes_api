@@ -3,7 +3,9 @@
 
 <head>
         <style type="text/css">
-li.active{color:red}
+                li.active {
+                        color: red
+                }
 
                 .table {
                         text-align: center;
@@ -18,20 +20,22 @@ li.active{color:red}
                 }
 
                 .h1 {
-                        /*font-size: 20em;*/
                         text-align: center;
-                        /*width: 50%;*/
-                        /*height: 50%;*/
                         border: 2px solid blue;
                         border-height: 10em;
-                        /*margin-top: 50px;*/
                         box-shadow: 0 0 30px hotpink;
                         text-shadow: 0 0 30px hotpink;
                         font-family: 'Rye', cursive;
                 }
+
+                #showMessage {
+                        color: red;
+                        font-size: 2em;
+                        text-align: center;
+                        text-shadow: 0 0 30px hotpink;
+                }
         </style>
         <meta charset="utf-8">
-        <!-- <link rel="stylesheet" href="/css/shoes_api.css"> -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/solar/bootstrap.min.css" rel="stylesheet" integrity="sha384-GC77SCz5O11gVtXl0sSfbQYEWSSznn1wPDHgL1BGUTFU9iEoUrG4IOJa5CBVY8kR" crossorigin="anonymous">
@@ -47,167 +51,131 @@ li.active{color:red}
         <br>
 
         <body>
-                <!-- <div id="menu"> -->
-                <!-- <ul class="nav nav-tabs"> -->
-                    <!-- <li class="active"><a href="#home">Home</a></li> -->
-                    <!-- <li class=""><a href="#addStock">Add stock</span></a></li> -->
-                    <!-- <li class=""><a href="#about" data-toggle="tab" aria-expanded="true">About</a></li> -->
-                <!-- </ul> -->
-<!-- </div> -->
-                <!-- <div  class="tab-pane fade active in" id="about">
-                        <h3>ABOUT THIS WEB APPLICATION</h2>
-                        <h5 class="text-info">Welcome to Amanda's online shoe catalogue.</h5>
-                        <h6>This web applictaion anables people to search and buy stock,<br>
-                                also enables the admin to add new stok and update the existing one.<br>
-                                If the stock is sold out then that stock should dissapear from the database.</h6>
-                        <p class="text-success"><b>As the customer you are able to:<b></p>
 
-                        <ul>
-                                <li>See tha available shoes in the shop</li>
-                                <li>Search the shoes they want using the text area</li>
-                                <li>Search the shoes they want using the dropdowns</li>
-                                <li>buy the shoes that they want</li>
-                        </ul>
 
-                        <p class="text-success"><b>As the admin i am able to:</b></p>
-
-                        <ul>
-                                <li>Add new stock</li>
-                                <li>Update the existing stock</li>
-                        </ul>
-
-                </div> -->
-
-<!-- <div class="tab-pane" id="home"> -->
                 <div class="container">
                         <div class="row">
                                 <div class="col-lg-4 form-inline ">
                                         <form class="float-right" method="post">
                                                 <label class="text-center" for="search">Brand or Color:</label>
                                                 <br>
-                                                <input id="search" type="search" name="" value="" class=" input-search search form-control" placeholder="search">
-                                                <!-- <button class=" btn btn-danger" id="searchStock">Search</button> -->
+                                                <input id="search" type="search" class=" input-search search form-control" placeholder="search">
                                         </form>
                                 </div>
                                 <div class="col col-lg-4">
                                         <p id="userDisplay"></p>
                                 </div>
                         </div <br><br>
-                        <div class="btn-group -group-justified">
+                        <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane active fade  in" id="home">
+                                        <div class="btn-group -group-justified">
 
-                        <form class="float-right">
-                                <select id="filterBrandBtn" class="btn btn-default btn-xs col-lg-4 form-inline dropdown" placeholder=>
+                                                <form class="float-right">
+                                                        <select id="filterBrandBtn" class="btn btn-default btn-xs col-lg-4 form-inline dropdown" placeholder=>
                                 </select>
-                        </form>
-                        <script id="dropDowns" type="text/x-handlebars-template">
-                                <option value="disabled" disabled="">Select Brand</option>
-                                <div class=" form-inline dropdown-menu" role="menu" id="filterBrands">
-                                        {{#each brand}}
-                                        <option id="filterBrand" >{{this}}</option>
-                                        {{/each}}
-                                </div>
-                        </script>
+                                                </form>
+                                                <script id="dropDowns" type="text/x-handlebars-template">
+                                                        <option value="disabled" disabled="">Select Brand</option>
+                                                        <div class=" form-inline dropdown-menu" role="menu" id="filterBrands">
+                                                                {{#each brand}}
+                                                                <option id="filterBrand">{{this}}</option>
+                                                                {{/each}}
+                                                        </div>
+                                                </script>
 
-                        <form class="float-right">
-                                <select id="filterSizeBtn" class="btn btn-default btn-xs col-lg-4 form-inline dropdown" placeholder=>
-                                </select>
-
-                        <script id="dropDownSize" type="text/x-handlebars-template">
-                                <option value="Select Brand" disabled="">Select Brand</option>
-                                <div class=" form-inline dropdown-menu" role="menu" id="filterSize">
-                                        {{#each size}}
-                                        <option id="filterSize" >{{this}}</option>
-                                        {{/each}}
-                                </div>
-                        </script>
-
-                        <form class="float-right">
-                                <select id="filterColorBtn" class="btn btn-default btn-xs col-lg-4 form-inline dropdown" placeholder=>
+                                                <form class="float-right">
+                                                        <select id="filterSizeBtn" class="btn btn-default btn-xs col-lg-4 form-inline dropdown" placeholder=>
                                 </select>
 
-                        <script id="dropDownColor" type="text/x-handlebars-template">
-                                <option value="Select Color" disabled="">Select Color</option>
-                                <div class=" form-inline dropdown-menu" role="menu" id="filterColor">
-                                        {{#each color}}
-                                        <option id="filterColor">{{this}}</option>
-                                        {{/each}}
-                                </div>
-                        </script>
-                </div>
+                                                        <script id="dropDownSize" type="text/x-handlebars-template">
+                                                                <option value="Select Brand" disabled="">Select Brand</option>
+                                                                <div class=" form-inline dropdown-menu" role="menu" id="filterSize">
+                                                                        {{#each size}}
+                                                                        <option id="filterSize">{{this}}</option>
+                                                                        {{/each}}
+                                                                </div>
+                                                        </script>
 
-                        <script id="template" type="text/x-handlebars-template">
-                                <div class="table-responsive">
-                                        <table id="tableData" class="table table-striped table-hover table-bordered table-list-search" style="word-wrap: break-word;min-width: 200px;max-width: 500px;">
-                                                <thead>
-                                                        <tr class="content" data-type="data">
-                                                                <th class="th danger text-center" style="border-radius: 5px">BRAND</th>
-                                                                <th class="th danger text-center" style="border-radius: 5px">COLOR</th>
-                                                                <th class="th danger text-center" style="border-radius: 5px">SIZE</th>
-                                                                <th class="th danger text-center" style="border-radius: 5px">STOCK</th>
-                                                                <th class="th danger text-center" style="border-radius: 5px">PRICE</th>
-                                                        </tr>
-                                                </thead>
-                                                <tbody>
-                                                        {{#each stock}}
-                                                        <tr class="content" data-type="data">
-                                                                <td class="td active" style="border-radius: 5px">{{Brand}}</td>
-                                                                <td class="td active" style="border-radius: 5px">{{Color}}</td>
-                                                                <td class="td active" style="border-radius: 5px">{{Size}}</td>
-                                                                <td class="td active" style="border-radius: 5px">{{InStock}}</td>
-                                                                <td class="td active" style="border-radius: 5px"> R {{Price}}.00 <br>
-                                                                        <div class=" popup col-1">
-                                                                                <form class=" form-group" method="post">
-                                                                                        <button class=" btn btn-success" value={{_id}} class="btn btn-primary" id="buyShoe">Buy</button>
-                                                                                </form>
+                                                        <form class="float-right">
+                                                                <select id="filterColorBtn" class="btn btn-default btn-xs col-lg-4 form-inline dropdown" placeholder=>
+                                </select>
+
+                                                                <script id="dropDownColor" type="text/x-handlebars-template">
+                                                                        <option value="Select Color" disabled="">Select Color</option>
+                                                                        <div class=" form-inline dropdown-menu" role="menu" id="filterColor">
+                                                                                {{#each color}}
+                                                                                <option id="filterColor">{{this}}</option>
+                                                                                {{/each}}
                                                                         </div>
-                                                                </td>
-                                                        </tr>
-                                                        {{/each}}
-                                                </tbody>
-                                        </table>
-                                </div>
-                        </script>
-                        <div id="showInfo"></div>
-                </form>
-
-                <div class="color-res" id="showMessage">
-                </div>
-        </div>
-</div>
-<!-- </div> -->
-
-                <div class="tab-pane" id="addStock">
-<form class=" form-group  jumbotron-fluid" method="post">
-        <div id="addingMyStock" align="center">
-                <div class="container">
-                        <div class="row">
-                                <div class="col-sm-4">
-                                        <h2><b>Adding Stock</b></h2>
-                                        <label for="addingBrand">Add Brand:</label>
-                                        <input type="text" class="form-control" id="addingBrand" aria-describedby="text" required placeholder="Enter Brand name">
-                                        <label for="addingColor">Add Color:</label>
-                                        <input type="text" class="form-control" id="addingColor" aria-describedby="text" required placeholder="Enter Color name">
-                                        <label for="addingSize">Add Size:</label>
-                                        <input type="number" class="form-control" id="addingSize" aria-describedby="number" required="" min="1" max="10" placeholder="Enter a Size">
-                                        <label for="addingStock">Add Stock:</label>
-                                        <input type="number" class="form-control" id="addingStock" aria-describedby="number" required="" placeholder="Enter Stock Number" min="1" max="20000">
-                                        <label for="addingPrice">Add Price:</label>
-                                        <input type="number" class="form-control" id="addingPrice" aria-describedby="number" required placeholder="Enter the price" min="100" max="4000">
-                                        <br/><br>
-
-                                        <div id="addStockFirst"></div>
-
-                                        <div class="col col-lg-2">
-                                                <button class="btn btn-danger" id="addBtn">Add Stock</button>
+                                                                </script>
                                         </div>
+
+                                        <script id="template" type="text/x-handlebars-template">
+                                                <div class="table-responsive">
+                                                        <table id="tableData" class="table table-striped table-hover table-bordered table-list-search" style="word-wrap: break-word;min-width: 200px;max-width: 500px;">
+                                                                <thead>
+                                                                        <tr class="content" data-type="data">
+                                                                                <th class="th danger text-center" style="border-radius: 5px">BRAND</th>
+                                                                                <th class="th danger text-center" style="border-radius: 5px">COLOR</th>
+                                                                                <th class="th danger text-center" style="border-radius: 5px">SIZE</th>
+                                                                                <th class="th danger text-center" style="border-radius: 5px">STOCK</th>
+                                                                                <th class="th danger text-center" style="border-radius: 5px">PRICE</th>
+                                                                        </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                        {{#each stock}}
+                                                                        <tr class="content" data-type="data">
+                                                                                <td class="td active" style="border-radius: 5px">{{Brand}}</td>
+                                                                                <td class="td active" style="border-radius: 5px">{{Color}}</td>
+                                                                                <td class="td active" style="border-radius: 5px">{{Size}}</td>
+                                                                                <td class="td active" style="border-radius: 5px">{{InStock}}</td>
+                                                                                <td class="td active" style="border-radius: 5px"> R {{Price}}.00 <br>
+                                                                                        <div class=" popup col-1">
+                                                                                                <form class=" form-group" method="post">
+                                                                                                        <button class=" btn btn-success" value={{_id}} class="btn btn-primary" id="buyShoe">Buy</button>
+                                                                                                </form>
+                                                                                        </div>
+                                                                                </td>
+                                                                        </tr>
+                                                                        {{/each}}
+                                                                </tbody>
+                                                        </table>
+                                                </div>
+                                        </script>
+                                        <div id="showInfo"></div>
+                                        </form>
                                 </div>
                         </div>
                 </div>
-        </div>
-</div>
-</form>
-<script src="app.js" charset="utf-8"></script>
 
-
-</body>
+                        <form class=" form-group  jumbotron-fluid" method="post">
+                                <div id="addingMyStock" align="center">
+                                        <div class="container">
+                                                <div class="row">
+                                                        <div class="col-sm-4">
+                                                                <div id="showMessage"></div>
+                                                                <h2><b>Add Stock</b></h2>
+                                                                <label for="addingBrand">Add Brand:</label>
+                                                                <input type="text" class="form-control" id="addingBrand" aria-describedby="text" required placeholder="Enter Brand name">
+                                                                <label for="addingColor">Add Color:</label>
+                                                                <input type="text" class="form-control" id="addingColor" aria-describedby="text" required placeholder="Enter Color name">
+                                                                <label for="addingSize">Add Size:</label>
+                                                                <input type="number" class="form-control" id="addingSize" aria-describedby="number" required="" min="1" max="10" placeholder="Enter a Size">
+                                                                <label for="addingStock">Add Stock:</label>
+                                                                <input type="number" class="form-control" id="addingStock" aria-describedby="number" required="" placeholder="Enter Stock Number" min="1" max="20000">
+                                                                <label for="addingPrice">Add Price:</label>
+                                                                <input type="number" class="form-control" id="addingPrice" aria-describedby="number" required placeholder="Enter the price" min="100" max="4000">
+                                                                <br/><br>
+                                                                <div class="col col-lg-2">
+                                                                        <button class="btn btn-danger" id="addBtn">Add Stock</button>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                </div>
+                </form>
+                </div>
+                <script src="app.js" charset="utf-8"></script>
+        </body>
 </html>

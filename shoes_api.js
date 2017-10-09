@@ -169,8 +169,22 @@ module.exports = function(models) {
                                 });
                         }
 
-                        if (soldShoes.InStock <= 0) {
-                                soldShoes.remove()
+                        if (soldShoes.InStock <= 1) {
+                                soldShoes.remove(function(){
+                                        // after shoes has been deleted - get the remaining shoes...
+                                        models.storeShoes.find({}, function(err, foundShoes) {
+                                                if (err) {
+                                                        return next(err)
+                                                }
+
+                                                res.json({
+                                                        status: "success",
+                                                        newShoes: foundShoes
+                                                });
+                                        })
+                                });
+                        }
+                        else{
                                 res.json({
                                         status: "success",
                                         newShoes: soldShoes

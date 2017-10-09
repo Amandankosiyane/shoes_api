@@ -5,67 +5,67 @@ $(function() {
         var table = document.getElementById("template").innerHTML;
         var theTemplate = Handlebars.compile(table);
 
-//  Compiling the brand dropdown
+        //  Compiling the brand dropdown
         var dropDownDisplay = document.querySelector("#filterBrandBtn");
         var dropDowns = document.getElementById("dropDowns").innerHTML;
         var uniqueDropdowns = Handlebars.compile(dropDowns);
 
-//  Compiling the size
+        //  Compiling the size
         var dropDownFilterSizeBtn = document.querySelector("#filterSizeBtn");
         var dropDownSize = document.getElementById("dropDownSize").innerHTML;
         var uniqueDropDownSize = Handlebars.compile(dropDownSize);
 
-//  Compiling the color
+        //  Compiling the color
         var dropDownColorFilter = document.querySelector("#filterColorBtn");
         var dropDownColor = document.getElementById("dropDownColor").innerHTML;
         var uniqueDropownColor = Handlebars.compile(dropDownColor);
 
-// Ajax call for unique brand value and sort alphabetically
+        // Ajax call for unique brand value and sort alphabetically
 
-$.ajax({
-        url: 'http://localhost:3018/api/shoes/brands',
-        type: 'GET',
-        success: function(data){
-                dropDownDisplay.innerHTML = uniqueDropdowns({
-                        brand: data.brands
-                })
-        },
-        error: function(err){
-                alert('error')
-        }
-})
-
-// Ajax call for unique color value and sort alphabetically
-$.ajax({
-        url: 'http://localhost:3018/api/shoes/colors',
-        type: 'GET',
-        success: function(data){
-                dropDownColorFilter.innerHTML = uniqueDropownColor({
-                        color: data.colors
-                })
-        },
-        error: function(err){
-                alert('error')
-        }
-})
-
-//Ajax call for unique size value and sort in ascending order
-$.ajax({
-        url: 'http://localhost:3018/api/shoes/sizes',
-        type: 'GET',
-        success: function(data){
-                dropDownFilterSizeBtn.innerHTML = uniqueDropDownSize({
-                        size: data.sizes
-                })
-        },
-        error: function(err){
-                alert('error')
-        }
-})
-
-// Ajax call to display the data from the database
         $.ajax({
-                url: 'http://localhost:3018/api/shoes',
+                url: 'secure-brushlands-15616.herokuapp.com/api/shoes/brands',
+                type: 'GET',
+                success: function(data) {
+                        dropDownDisplay.innerHTML = uniqueDropdowns({
+                                brand: data.brands
+                        })
+                },
+                error: function(err) {
+                        alert('error')
+                }
+        })
+
+        // Ajax call for unique color value and sort alphabetically
+        $.ajax({
+                url: 'secure-brushlands-15616.herokuapp.com/api/shoes/colors',
+                type: 'GET',
+                success: function(data) {
+                        dropDownColorFilter.innerHTML = uniqueDropownColor({
+                                color: data.colors
+                        })
+                },
+                error: function(err) {
+                        alert('error')
+                }
+        })
+
+        //Ajax call for unique size value and sort in ascending order
+        $.ajax({
+                url: 'secure-brushlands-15616.herokuapp.com/api/shoes/sizes',
+                type: 'GET',
+                success: function(data) {
+                        dropDownFilterSizeBtn.innerHTML = uniqueDropDownSize({
+                                size: data.sizes
+                        })
+                },
+                error: function(err) {
+                        alert('error')
+                }
+        })
+
+        // Ajax call to display the data from the database
+        $.ajax({
+                url: 'secure-brushlands-15616.herokuapp.com/api/shoes',
                 type: 'GET',
                 success: function(data) {
                         addDisplay.innerHTML = theTemplate({
@@ -81,14 +81,14 @@ $.ajax({
 
         //ajax call to  add  shoes to the database
         $('#addBtn').on('click', function() {
-                var displayMessage = document.getElementById('showMessage')
+                var showAlertMessage = document.getElementById("showMessage");
                 var brand = document.getElementById('addingBrand').value.toUpperCase();
                 var color = document.getElementById('addingColor').value.toUpperCase();
                 var size = document.getElementById('addingSize').value;
                 var stock = document.getElementById('addingStock').value;
                 var price = document.getElementById('addingPrice').value;
-                if (brand == null || brand.length == 0  && color == null || color.length == 0 && size == null || size.length == 0 && stock == null || stock.length == 0 && price == null || price.length == 0) {
-                        alert('These fields must not be empty')
+                if (brand == null || brand.length == 0 && color == null || color.length == 0 && size == null || size.length == 0 && stock == null || stock.length == 0 && price == null || price.length == 0) {
+                        showAlertMessage.innerHTML = "These fields must not be empty"
                         return false;
                 }
                 var addDisplay = document.getElementById("showInfo");
@@ -103,7 +103,7 @@ $.ajax({
                 console.log(Addshoes);
                 $.ajax({
                         type: "POST",
-                        url: 'http://localhost:3018/api/shoes',
+                        url: 'secure-brushlands-15616.herokuapp.com/api/shoes',
                         dataType: "json",
                         data: Addshoes,
                         success: function(data) {
@@ -117,7 +117,7 @@ $.ajax({
                 })
         })
 
-//Ajax call to buy shoes
+        //Ajax call to buy shoes
         $('#showInfo').on('click', function(e) {
 
                 var table = document.getElementById("template").innerHTML;
@@ -125,10 +125,11 @@ $.ajax({
                 var shoeId = e.target.value;
 
                 $.ajax({
-                        url: 'http://localhost:3018/api/shoes/sold/' + shoeId,
+                        url: 'secure-brushlands-15616.herokuapp.com/api/shoes/sold/' + shoeId,
                         type: 'POST',
                         dataType: 'application/json',
                         success: function(data) {
+
                         },
                         error: function(error) {
                                 // alert('error cant buy shoe')
@@ -136,7 +137,7 @@ $.ajax({
                 })
         });
 
-// Filter using a textbox, filter by brand and color
+        // Filter using a textbox, filter by brand and color
         $('#search').on('keyup', function() {
                 var input, filter, found, table, tr, td;
                 input = document.getElementById("myInput");
@@ -160,13 +161,13 @@ $.ajax({
         })
 
 
-//Ajax call to filter by brand
+        //Ajax call to filter by brand
         $("#filterBrandBtn").on('click', function() {
                 var filterBrand = document.getElementById("filterBrandBtn").value;
 
                 console.log(filterBrand);
 
-                var filterBrandUrl = 'http://localhost:3018/api/shoes/brand/' + filterBrand;
+                var filterBrandUrl = 'secure-brushlands-15616.herokuapp.com/api/shoes/brand/' + filterBrand;
 
                 $.ajax({
                         url: filterBrandUrl,
@@ -184,12 +185,12 @@ $.ajax({
         })
 
 
-//  Ajax call to filter by size
+        //  Ajax call to filter by size
         $("#filterSizeBtn").on("click", function() {
                 var filterSze = document.querySelector("#filterSizeBtn");
                 var size = filterSze.value;
 
-                var filterSizeUrl = 'http://localhost:3018/api/shoes/size/' + size;
+                var filterSizeUrl = 'secure-brushlands-15616.herokuapp.com/api/shoes/size/' + size;
                 $.ajax({
                         url: filterSizeUrl,
                         type: "GET",
@@ -208,7 +209,7 @@ $.ajax({
         //  Ajax call to filter by color
         $("#filterColorBtn").on("click", function() {
                 var filterColor = document.getElementById("filterColorBtn").value;
-                var filterColorUrl = 'http://localhost:3018/api/shoes/color/' + filterColor;
+                var filterColorUrl = 'secure-brushlands-15616.herokuapp.com/api/shoes/color/' + filterColor;
 
                 $.ajax({
                         url: filterColorUrl,
@@ -223,4 +224,5 @@ $.ajax({
                         }
                 })
         })
+
 })

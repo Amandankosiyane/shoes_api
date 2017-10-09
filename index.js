@@ -37,9 +37,10 @@ app.use(session({
 }));
 app.use(flash());
 
-app.get('/', function(req, res) {
-        res.redirect('/api/shoes');
+app.post('/', function(req, res) {
+        res.redirect('/');
 })
+
 
 // app.get('/api/shoes', ShoeRoutes.shoes);
 app.get('/api/shoes', ShoeRoutes.AllShoes);

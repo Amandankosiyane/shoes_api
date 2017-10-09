@@ -167,7 +167,7 @@ $(function() {
 
                 console.log(filterBrand);
 
-                var filterBrandUrl = 'secure-brushlands-15616.herokuapp.com/api/shoes/brand/' + filterBrand;
+                var filterBrandUrl = 'https://ecure-brushlands-15616.herokuapp.com/api/shoes/brand/' + filterBrand;
 
                 $.ajax({
                         url: filterBrandUrl,
@@ -190,7 +190,7 @@ $(function() {
                 var filterSze = document.querySelector("#filterSizeBtn");
                 var size = filterSze.value;
 
-                var filterSizeUrl = 'secure-brushlands-15616.herokuapp.com/api/shoes/size/' + size;
+                var filterSizeUrl = 'https://ecure-brushlands-15616.herokuapp.com/api/shoes/size/' + size;
                 $.ajax({
                         url: filterSizeUrl,
                         type: "GET",
@@ -209,7 +209,7 @@ $(function() {
         //  Ajax call to filter by color
         $("#filterColorBtn").on("click", function() {
                 var filterColor = document.getElementById("filterColorBtn").value;
-                var filterColorUrl = 'secure-brushlands-15616.herokuapp.com/api/shoes/color/' + filterColor;
+                var filterColorUrl = 'https://ecure-brushlands-15616.herokuapp.com/api/shoes/color/' + filterColor;
 
                 $.ajax({
                         url: filterColorUrl,

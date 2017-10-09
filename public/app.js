@@ -125,7 +125,7 @@ $(function() {
                 var shoeId = e.target.value;
 
                 $.ajax({
-                        url: 'secure-brushlands-15616.herokuapp.com/api/shoes/sold/' + shoeId,
+                        url: 'https://secure-brushlands-15616.herokuapp.com/api/shoes/sold/' + shoeId,
                         type: 'POST',
                         dataType: 'application/json',
                         success: function(data) {

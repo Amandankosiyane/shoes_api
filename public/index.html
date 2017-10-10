@@ -81,8 +81,8 @@
                                 </select>
                                                 </form>
                                                 <script id="dropDowns" type="text/x-handlebars-template">
-                                                        <option >Select Brand</option>
                                                         <div class=" form-inline dropdown-menu" role="menu" id="filterBrands">
+                                                                <option disabled selected>Choose a brand</option>
                                                                 {{#each brand}}
                                                                 <option id="filterBrand">{{this}}</option>
                                                                 {{/each}}
@@ -95,8 +95,9 @@
                                 </select></form>
 
                                                         <script id="dropDownSize" type="text/x-handlebars-template">
-                                                                <option >Select Size</option>
                                                                 <div class=" form-inline dropdown-menu" role="menu" id="filterSize">
+                                                                        <option disabled selected>Choose a Size</option>
+
                                                                         {{#each size}}
                                                                         <option id="filterSize">{{this}}</option>
                                                                         {{/each}}
@@ -111,8 +112,9 @@
                                 <button type="submit" class="btn btn-danger" id="showAllStock">show all</button>
 
                                                                 <script id="dropDownColor" type="text/x-handlebars-template">
-                                                                        <option >Select Color</option>
                                                                         <div class=" form-inline dropdown-menu" role="menu" id="filterColor">
+                                                                                <option disabled selected>Choose a Color</option>
+
                                                                                 {{#each color}}
                                                                                 <option id="filterColor">{{this}}</option>
                                                                                 {{/each}}

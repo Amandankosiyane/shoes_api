@@ -21,7 +21,6 @@ $(function() {
         var uniqueDropownColor = Handlebars.compile(dropDownColor);
 
         // Ajax call for unique brand value and sort alphabetically
-
         $.ajax({
                 url: 'https://secure-brushlands-15616.herokuapp.com/api/shoes/brands',
                 type: 'GET',

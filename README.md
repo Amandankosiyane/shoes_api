@@ -44,7 +44,7 @@ npm install
 ```javascript
 
 {
-  "name": "waiter_webapp",
+  "name": "shoes_api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -93,7 +93,7 @@ http://localhost:3018
 
 ```
 - Then you should be able to run the application.
-- If you want to check the admin side just click the add Stock navigation tab then you will see the admin side.
+- If you want to check the admin side just click the _add Stock_ navigation tab then you will see the admin side.
 
 ## Let's run the Application on Heroku
 - I assume that you already have the following:

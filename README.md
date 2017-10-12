@@ -5,9 +5,10 @@
 A friend(Zuko) of my brother is running a shoe shop and already have an online catalogue that allows people to check his stock. But he would like to make his inventory available to other systems. He heard about API’s and think that his shop will really benefit from having an API.  asked me to make him a shoe catalogue Api application.
 
 ## Customers are able to :
-- See tha available shoes in the shop.
-- Search the shoes they want using the text area.
-- Search the shoes they want using the dropdowns.
+- See the available shoes in the shop.
+- Search shoes by size using text area.
+- Search shoes by color using text area.
+- Search shoes by brand using text area.
 - buy the shoes that they want.
 
 ## Zuko will be able to:

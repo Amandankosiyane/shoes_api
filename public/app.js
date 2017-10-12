@@ -89,8 +89,9 @@ $(function() {
     for (var i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
         tdS = tr[i].getElementsByTagName("td")[2];
+        tdZ = tr[i].getElementsByTagName("td")[1];
         if (td || tdS) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1 || tdS.innerHTML.indexOf(filter) > -1) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1 || tdS.innerHTML.indexOf(filter) > -1 || tdZ.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
             } else {
                 tr[i].style.display = "none";

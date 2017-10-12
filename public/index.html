@@ -75,51 +75,6 @@
                         </div <br><br>
                                         <div class="btn-group -group-justified">
 
-                                                <form class="float-right">
-                                                        <label class="float-right">Brand</label>
-                                                        <select id="filterBrandBtn" class="btn btn-default btn-xs col-lg-6  form-inline dropdown" placeholder=>
-                                </select>
-                                                </form>
-                                                <script id="dropDowns" type="text/x-handlebars-template">
-                                                        <div class=" form-inline dropdown-menu" role="menu" id="filterBrands">
-                                                                <option disabled selected>Choose a brand</option>
-                                                                {{#each brand}}
-                                                                <option id="filterBrand">{{this}}</option>
-                                                                {{/each}}
-                                                        </div>
-                                                </script>
-
-                                                <form class="float-right">
-                                                        <label>Size</label>
-                                                        <select id="filterSizeBtn" class="btn btn-default btn-xs col-lg-6  form-inline dropdown" placeholder=>
-                                </select></form>
-
-                                                        <script id="dropDownSize" type="text/x-handlebars-template">
-                                                                <div class=" form-inline dropdown-menu" role="menu" id="filterSize">
-                                                                        <option disabled selected>Choose a Size</option>
-
-                                                                        {{#each size}}
-                                                                        <option id="filterSize">{{this}}</option>
-                                                                        {{/each}}
-                                                                </div>
-                                                        </script>
-
-                                                        <form class="float-right">
-                                                                <label>Color</label>
-                                                                <select id="filterColorBtn" class="btn btn-default btn-xs col-lg-6  form-inline dropdown" placeholder=>
-                                </select>
-                                <br><br>
-                                <button type="submit" class="btn btn-danger" id="showAllStock">show all</button>
-
-                                                                <script id="dropDownColor" type="text/x-handlebars-template">
-                                                                        <div class=" form-inline dropdown-menu" role="menu" id="filterColor">
-                                                                                <option disabled selected>Choose a Color</option>
-
-                                                                                {{#each color}}
-                                                                                <option id="filterColor">{{this}}</option>
-                                                                                {{/each}}
-                                                                        </div>
-                                                                </script>
                                         </div>
 
                                         <script id="template" type="text/x-handlebars-template">
